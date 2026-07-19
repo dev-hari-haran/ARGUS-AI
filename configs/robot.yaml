@@ -1,0 +1,8 @@
+# 2DOF Planar Manipulator Configuration
+link_lengths:
+  l1: [0.5, 2.0]  # Min/Max length of first link
+  l2: [0.5, 2.0]  # Min/Max length of second link
+
+joint_limits:
+  q1: [-3.14159, 3.14159]  # radians
+  q2: [-3.14159, 3.14159]  # radians

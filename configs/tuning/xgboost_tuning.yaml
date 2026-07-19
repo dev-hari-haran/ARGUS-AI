@@ -1,0 +1,6 @@
+model_name: "xgboost"
+n_trials: 20
+params:
+  n_estimators: [50, 300]
+  max_depth: [3, 15]
+  learning_rate: [0.01, 0.3]

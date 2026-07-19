@@ -1,0 +1,5 @@
+model_name: "hist_gradient_boosting"
+max_iter: 100
+max_depth: null
+learning_rate: 0.1
+random_state: 42
