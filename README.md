@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="IK-ML — 2DOF Planar Manipulator Inverse Kinematics" width="100%"/>
+<img src="banner.svg" alt="IK-ML — 2DOF Planar Manipulator Inverse Kinematics" width="100%"/>
 
 <br/>
 
@@ -28,7 +28,7 @@ A 2DOF planar manipulator possesses a closed-form analytical Inverse Kinematics 
 > This repository strictly prohibits optimization-based IK solvers (Jacobian Pseudo-inverse, CCD, FABRIK, etc.). It is a pure supervised machine learning pipeline designed to achieve millimetre-level Cartesian accuracy in a single forward pass.
 
 <div align="center">
-<img src="assets/pipeline.svg" alt="End-to-end pipeline" width="100%"/>
+<img src="pipeline.svg" alt="End-to-end pipeline" width="100%"/>
 </div>
 
 ---
@@ -38,7 +38,7 @@ A 2DOF planar manipulator possesses a closed-form analytical Inverse Kinematics 
 The framework is decoupled into independent, highly modular vertical slices. No monolithic scripts; every module is configurable via YAML and interacts strictly through standardized data APIs.
 
 <div align="center">
-<img src="assets/architecture.svg" alt="Modular architecture" width="100%"/>
+<img src="architecture.svg" alt="Modular architecture" width="100%"/>
 </div>
 
 ### Core Subsystems
