@@ -28,8 +28,8 @@ def run_model_diagnostics():
     X_test, y_test = scaler.transform(test_df)
     y_test_unscaled = scaler.inverse_transform_targets(y_test)
     
-    # Only evaluate models that are memory-friendly or likely to load
-    models = ["decision_tree", "xgboost", "hist_gradient_boosting"]
+    # Only evaluate models that were trained with the CURRENT feature engineering logic
+    models = ["xgboost", "linear_regression"]
     
     inference_times = {}
     model_sizes = {}

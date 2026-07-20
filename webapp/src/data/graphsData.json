@@ -147,6 +147,20 @@
     "description": "This is a detailed model diagnostics visualization focusing on inference time bar. It highlights the regression performance and error residuals to identify potential biases or variance."
   },
   {
+    "id": "linear_regression_actual_vs_pred_q1",
+    "filename": "/graphs/linear_regression_actual_vs_pred_q1.png",
+    "title": "Linear Regression Actual Vs Pred Q1",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on linear regression actual vs pred q1. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "linear_regression_residual_hist",
+    "filename": "/graphs/linear_regression_residual_hist.png",
+    "title": "Linear Regression Residual Hist",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on linear regression residual hist. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
     "id": "model_size_bar",
     "filename": "/graphs/model_size_bar.png",
     "title": "Model Size Bar",
@@ -250,6 +264,20 @@
     "title": "Hist Gradient Boosting Joint Preds",
     "category": "Performance Reports",
     "description": "This is a detailed performance reports visualization focusing on hist gradient boosting joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "linear_regression_error_dist",
+    "filename": "/graphs/linear_regression_error_dist.png",
+    "title": "Linear Regression Error Dist",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on linear regression error dist. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "linear_regression_joint_preds",
+    "filename": "/graphs/linear_regression_joint_preds.png",
+    "title": "Linear Regression Joint Preds",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on linear regression joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
   },
   {
     "id": "model_comparison_errors",
