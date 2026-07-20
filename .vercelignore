@@ -1,0 +1,18 @@
+# Exclude frontend dependencies from serverless function bundle
+webapp/node_modules/
+webapp/dist/
+.pytest_cache/
+venv/
+env/
+.venv/
+.env/
+
+# Exclude heavy models (except the ones we explicitly load if any)
+models/decision_tree_model.pkl
+models/extra_trees_model.pkl
+models/random_forest_model.pkl
+
+# Exclude data
+data/raw/
+data/processed/
+data/generated/
