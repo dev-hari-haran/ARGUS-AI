@@ -65,74 +65,76 @@ const Dashboard = () => {
     setModalContent({ title, component });
   };
 
-  // Custom Sweet Spot Label
-  const SweetSpotLabel = ({ viewBox }) => {
-    const { x, y } = viewBox;
-    return (
-      <g>
-        <rect x={x - 60} y={y - 45} width={120} height={28} rx={6} fill="#10b981" fillOpacity={0.9} />
-        <text x={x} y={y - 27} textAnchor="middle" fill="white" fontSize={12} fontWeight="bold">
-          ★ Sweet Spot
-        </text>
-        <line x1={x} y1={y - 17} x2={x} y2={y - 6} stroke="#10b981" strokeWidth={2} />
-      </g>
-    );
-  };
-
-  // Custom Model Label
-  const ModelLabel = ({ viewBox }) => {
-    const { x, y } = viewBox;
-    return (
-      <g>
-        <rect x={x - 75} y={y - 70} width={150} height={28} rx={6} fill="#EAB308" fillOpacity={0.9} />
-        <text x={x} y={y - 52} textAnchor="middle" fill="#000" fontSize={11} fontWeight="bold">
-          ⚙ Our XGBoost Model
-        </text>
-        <line x1={x} y1={y - 42} x2={x} y2={y - 6} stroke="#EAB308" strokeWidth={2} strokeDasharray="4 2" />
-      </g>
-    );
-  };
-
-  // The Bias-Variance Chart Component
+  // The Bias-Variance Chart Component (Clean Design)
   const BiasVarianceChart = () => (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={biasVarianceData} margin={{ top: 60, right: 30, left: 0, bottom: 20 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
-        <XAxis dataKey="complexity" stroke="var(--text-secondary)" label={{ value: 'Model Complexity →', position: 'bottom', fill: 'var(--text-secondary)' }} />
-        <YAxis stroke="var(--text-secondary)" label={{ value: 'Error', angle: -90, position: 'insideLeft', fill: 'var(--text-secondary)' }} />
-        <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}/>
-        <Legend verticalAlign="top" height={36}/>
+      <LineChart data={biasVarianceData} margin={{ top: 20, right: 40, left: 0, bottom: 30 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+        <XAxis 
+          dataKey="complexity" 
+          stroke="var(--text-secondary)" 
+          tick={{ fontSize: 11 }}
+          label={{ value: 'Model Complexity →', position: 'bottom', fill: 'var(--text-secondary)', fontSize: 12, offset: 10 }} 
+        />
+        <YAxis 
+          stroke="var(--text-secondary)" 
+          tick={{ fontSize: 11 }}
+          label={{ value: 'Error', angle: -90, position: 'insideLeft', fill: 'var(--text-secondary)', fontSize: 12 }} 
+        />
+        <Tooltip 
+          contentStyle={{ 
+            backgroundColor: 'rgba(15,15,15,0.95)', 
+            borderColor: 'rgba(255,255,255,0.1)', 
+            color: '#fff',
+            borderRadius: '8px',
+            fontSize: '12px'
+          }}
+        />
+        <Legend verticalAlign="top" height={36} iconType="line" />
         
-        {/* Underfitting / Overfitting zones */}
-        <ReferenceLine x={20} stroke="rgba(59,130,246,0.3)" strokeWidth={30} />
-        <ReferenceLine x={75} stroke="rgba(239,68,68,0.3)" strokeWidth={30} />
+        {/* Curves */}
+        <Line type="monotone" dataKey="Bias" stroke="#60a5fa" strokeWidth={2.5} dot={false} name="Bias" />
+        <Line type="monotone" dataKey="Variance" stroke="#f87171" strokeWidth={2.5} dot={false} name="Variance" />
+        <Line type="monotone" dataKey="Total Error" stroke="#fbbf24" strokeWidth={3} dot={false} name="Total Error" />
         
-        <Line type="monotone" dataKey="Bias" stroke="#3b82f6" strokeWidth={3} dot={false} name="Bias (Underfitting)" />
-        <Line type="monotone" dataKey="Variance" stroke="#ef4444" strokeWidth={3} dot={false} name="Variance (Overfitting)" />
-        <Line type="monotone" dataKey="Total Error" stroke="#EAB308" strokeWidth={4} dot={false} name="Total Error" />
+        {/* Sweet Spot - clean vertical dashed line */}
+        <ReferenceLine 
+          x={sweetSpotIdx} 
+          stroke="#34d399" 
+          strokeDasharray="6 4" 
+          strokeWidth={1.5}
+          label={{ value: '★ Sweet Spot', position: 'insideTopRight', fill: '#34d399', fontSize: 12, fontWeight: 600, offset: 10 }}
+        />
+        <ReferenceDot x={sweetSpotIdx} y={biasVarianceData[sweetSpotIdx]['Total Error']} r={7} fill="#34d399" stroke="#0f0f0f" strokeWidth={2} />
         
-        {/* Sweet Spot marker */}
-        <ReferenceDot x={sweetSpotIdx} y={biasVarianceData[sweetSpotIdx]['Total Error']} r={10} fill="#10b981" stroke="white" strokeWidth={3} />
-        <ReferenceLine x={sweetSpotIdx} stroke="#10b981" strokeDasharray="5 5" label={<SweetSpotLabel />} />
-        
-        {/* Our Model marker (near sweet spot) */}
-        <ReferenceDot x={sweetSpotIdx + 3} y={biasVarianceData[sweetSpotIdx + 3]['Total Error']} r={8} fill="#EAB308" stroke="white" strokeWidth={2} />
-        <ReferenceLine x={sweetSpotIdx + 3} stroke="#EAB308" strokeDasharray="3 3" label={<ModelLabel />} />
-
-        {/* Zone Labels */}
-        <ReferenceLine x={15} stroke="transparent" label={{ value: "← Underfitting", position: "top", fill: "#3b82f6", fontSize: 13, fontWeight: 'bold' }} />
-        <ReferenceLine x={80} stroke="transparent" label={{ value: "Overfitting →", position: "top", fill: "#ef4444", fontSize: 13, fontWeight: 'bold' }} />
+        {/* Our Model - slightly right of sweet spot */}
+        <ReferenceDot x={sweetSpotIdx + 4} y={biasVarianceData[sweetSpotIdx + 4]['Total Error']} r={7} fill="#fbbf24" stroke="#0f0f0f" strokeWidth={2} />
+        <ReferenceLine 
+          x={sweetSpotIdx + 4} 
+          stroke="#fbbf24" 
+          strokeDasharray="4 4" 
+          strokeWidth={1}
+          label={{ value: '⚙ Our Model', position: 'insideTopLeft', fill: '#fbbf24', fontSize: 11, fontWeight: 600, offset: 10 }}
+        />
       </LineChart>
     </ResponsiveContainer>
   );
 
+  const tooltipStyle = { 
+    backgroundColor: 'rgba(15,15,15,0.95)', 
+    borderColor: 'rgba(255,255,255,0.1)', 
+    color: '#fff', 
+    borderRadius: '8px', 
+    fontSize: '12px' 
+  };
+
   const ErrorCompChart = () => (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart data={errorComparisonData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="var(--border-color)" />
-        <XAxis type="number" stroke="var(--text-secondary)" tick={{fontSize: 12}} />
-        <YAxis type="category" dataKey="name" stroke="var(--text-secondary)" tick={{fontSize: 11}} width={90}/>
-        <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}/>
+        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+        <XAxis type="number" stroke="var(--text-secondary)" tick={{ fontSize: 11 }} />
+        <YAxis type="category" dataKey="name" stroke="var(--text-secondary)" tick={{ fontSize: 11 }} width={90} />
+        <Tooltip contentStyle={tooltipStyle} />
         <Bar dataKey="error" radius={[0, 4, 4, 0]}>
           {errorComparisonData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -145,27 +147,27 @@ const Dashboard = () => {
   const R2Chart = () => (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart data={r2ComparisonData} margin={{ top: 5, right: 20, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
-        <XAxis dataKey="name" stroke="var(--text-secondary)" tick={{fontSize: 12}} />
-        <YAxis stroke="var(--text-secondary)" tick={{fontSize: 12}} domain={[0, 1]} />
-        <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}/>
-        <Legend />
-        <Bar dataKey="XGBoost" fill="#EAB308" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="LinearReg" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+        <XAxis dataKey="name" stroke="var(--text-secondary)" tick={{ fontSize: 11 }} />
+        <YAxis stroke="var(--text-secondary)" tick={{ fontSize: 11 }} domain={[0, 1]} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend iconType="square" />
+        <Bar dataKey="XGBoost" fill="#fbbf24" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="LinearReg" fill="#60a5fa" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
 
   const TrainingTimeChart = () => (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={trainingTimeData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
-        <XAxis dataKey="name" stroke="var(--text-secondary)" tick={{fontSize: 12}} label={{ value: 'Dataset Size (rows)', position: 'bottom', fill: 'var(--text-secondary)', fontSize: 11 }} />
-        <YAxis stroke="var(--text-secondary)" tick={{fontSize: 12}} label={{ value: 'Seconds', angle: -90, position: 'insideLeft', fill: 'var(--text-secondary)', fontSize: 11 }} />
-        <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}/>
-        <Legend />
-        <Line type="monotone" dataKey="XGBoost" stroke="#EAB308" strokeWidth={3} dot={{ r: 4, fill: '#EAB308' }} />
-        <Line type="monotone" dataKey="LinearReg" stroke="#3b82f6" strokeWidth={3} dot={{ r: 4, fill: '#3b82f6' }} />
+      <LineChart data={trainingTimeData} margin={{ top: 10, right: 15, left: -15, bottom: 15 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+        <XAxis dataKey="name" stroke="var(--text-secondary)" tick={{ fontSize: 11 }} label={{ value: 'Dataset Size', position: 'bottom', fill: 'var(--text-secondary)', fontSize: 10, offset: 0 }} />
+        <YAxis stroke="var(--text-secondary)" tick={{ fontSize: 11 }} label={{ value: 'Sec', angle: -90, position: 'insideLeft', fill: 'var(--text-secondary)', fontSize: 10 }} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend iconType="line" />
+        <Line type="monotone" dataKey="XGBoost" stroke="#fbbf24" strokeWidth={2.5} dot={{ r: 3, fill: '#fbbf24', stroke: '#0f0f0f', strokeWidth: 1 }} />
+        <Line type="monotone" dataKey="LinearReg" stroke="#60a5fa" strokeWidth={2.5} dot={{ r: 3, fill: '#60a5fa', stroke: '#0f0f0f', strokeWidth: 1 }} />
       </LineChart>
     </ResponsiveContainer>
   );

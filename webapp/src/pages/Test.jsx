@@ -267,6 +267,52 @@ const Test = () => {
       ctx.beginPath(); ctx.rect(26, 10, 8, 4); ctx.fill();
       
       ctx.restore();
+      
+      // --- Predicted Point (FK result from ML predicted angles) ---
+      // This is where the manipulator ACTUALLY ends up based on the model's prediction
+      const predX = ewx;
+      const predY = ewy;
+      
+      // Draw dashed error line from predicted point to target
+      const targetWorldX = Number(x);
+      const targetWorldY = Number(y);
+      const dist = Math.sqrt(Math.pow(predX - targetWorldX, 2) + Math.pow(predY - targetWorldY, 2));
+      
+      ctx.beginPath();
+      ctx.setLineDash([6, 4]);
+      ctx.strokeStyle = 'rgba(239, 68, 68, 0.6)';
+      ctx.lineWidth = 2;
+      ctx.moveTo(esx, esy);
+      ctx.lineTo(tx, ty);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Predicted point marker (green diamond)
+      ctx.save();
+      ctx.translate(esx, esy);
+      ctx.rotate(Math.PI / 4);
+      ctx.fillStyle = '#10b981';
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 2;
+      ctx.fillRect(-6, -6, 12, 12);
+      ctx.strokeRect(-6, -6, 12, 12);
+      ctx.restore();
+      
+      // Label: Predicted point coordinates
+      ctx.fillStyle = '#10b981';
+      ctx.font = 'bold 11px "Inter", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(`Predicted (${predX.toFixed(2)}, ${predY.toFixed(2)})`, esx + 16, esy + 8);
+      
+      // Error distance label (midpoint of the dashed line)
+      const midSx = (esx + tx) / 2;
+      const midSy = (esy + ty) / 2;
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.9)';
+      ctx.font = 'bold 11px "Inter", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText(`Δ ${dist.toFixed(3)}`, midSx, midSy - 6);
     }
   }, [solution, x, y, l1, l2]);
 

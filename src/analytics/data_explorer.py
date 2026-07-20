@@ -30,8 +30,8 @@ def run_data_exploration():
     # 2. Box & Violin Plots
     logger.info("Generating Box & Violin Plots...")
     plt.figure(figsize=(12, 6))
-    sns.boxplot(data=df)
-    plt.title('Box Plot of All Features')
+    sns.boxplot(data=df.sample(min(50000, len(df))))
+    plt.title('Box Plot of All Features (Subsampled)')
     plt.tight_layout()
     plt.savefig(plots_dir / 'box_plot_all.png')
     plt.close()
