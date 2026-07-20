@@ -2,14 +2,11 @@ import os
 import joblib
 import math
 import numpy as np
-import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-from src.features.feature_engineering import FeatureEngineer
 
 app = Flask(__name__)
 CORS(app)
@@ -70,15 +67,26 @@ def predict():
     
     # ML Model
     if model and scaler_data:
-        df = pd.DataFrame([{'x': x, 'y': y, 'l1': L1, 'l2': L2, 'q1': 0.0, 'q2': 0.0}])
-        engineer = FeatureEngineer()
-        df_eng = engineer.transform(df)
+        # Feature Engineering without Pandas
+        theta_base = np.arctan2(y, x)
+        cosine_term = np.clip((x**2 + y**2 - L1**2 - L2**2) / (2 * L1 * L2), -1.0, 1.0)
+        r = np.sqrt(x**2 + y**2)
+        
+        # Build feature array in the correct order based on scaler_data['features']['cols']
+        feat_dict = {
+            'x': x, 'y': y, 'l1': L1, 'l2': L2,
+            'theta_base': theta_base,
+            'cosine_term': cosine_term,
+            'r': r
+        }
         
         # Transform features
         feat_cols = scaler_data['features']['cols']
+        X_raw = np.array([[feat_dict[col] for col in feat_cols]])
+        
         feat_mean = np.array(scaler_data['features']['mean'])
         feat_scale = np.array(scaler_data['features']['scale'])
-        X_scaled = (df_eng[feat_cols] - feat_mean) / feat_scale
+        X_scaled = (X_raw - feat_mean) / feat_scale
         
         pred_scaled = model.predict(X_scaled)[0]
         
