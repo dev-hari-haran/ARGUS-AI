@@ -10,7 +10,6 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from src.features.feature_engineering import FeatureEngineer
-from src.preprocessing.scaler import DataScaler
 
 app = Flask(__name__)
 CORS(app)
@@ -24,11 +23,14 @@ else:
 # We need a fitted scaler. Since we don't have the original fitted scaler saved, 
 # wait, did we save the scaler object?
 # Let's try to load scaler if it exists, otherwise we'll have an issue.
-SCALER_PATH = "models/scaler.pkl"
+import json
+
+SCALER_PATH = "models/scaler.json"
 if os.path.exists(SCALER_PATH):
-    scaler = joblib.load(SCALER_PATH)
+    with open(SCALER_PATH, 'r') as f:
+        scaler_data = json.load(f)
 else:
-    scaler = None
+    scaler_data = None
 
 def compute_analytical_ik(x, y, L1, L2):
     solutions = []
@@ -67,19 +69,25 @@ def predict():
     analytical = compute_analytical_ik(x, y, L1, L2)
     
     # ML Model
-    if model and scaler:
+    if model and scaler_data:
         df = pd.DataFrame([{'x': x, 'y': y, 'l1': L1, 'l2': L2, 'q1': 0.0, 'q2': 0.0}])
         engineer = FeatureEngineer()
         df_eng = engineer.transform(df)
         
-        feature_cols = [c for c in df_eng.columns if c not in ['q1', 'q2']]
         # Transform features
-        X_scaled, _ = scaler.transform(df_eng)
+        feat_cols = scaler_data['features']['cols']
+        feat_mean = np.array(scaler_data['features']['mean'])
+        feat_scale = np.array(scaler_data['features']['scale'])
+        X_scaled = (df_eng[feat_cols] - feat_mean) / feat_scale
         
         pred_scaled = model.predict(X_scaled)[0]
-        # Inverse transform
-        pred_df = pd.DataFrame([pred_scaled], columns=['q1', 'q2'])
-        pred_unscaled = scaler.inverse_transform_targets(pred_df).iloc[0]
+        
+        # Inverse transform targets
+        targ_mean = np.array(scaler_data['targets']['mean'])
+        targ_scale = np.array(scaler_data['targets']['scale'])
+        pred_unscaled_arr = pred_scaled * targ_scale + targ_mean
+        
+        pred_unscaled = {'q1': pred_unscaled_arr[0], 'q2': pred_unscaled_arr[1]}
         
         ml_th1 = float(pred_unscaled['q1'])
         ml_th2 = float(pred_unscaled['q2'])
