@@ -1,0 +1,2 @@
+model_name: "linear_regression"
+n_jobs: -1

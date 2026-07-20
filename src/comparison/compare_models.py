@@ -7,6 +7,7 @@ from src.features.feature_engineering import FeatureEngineer
 from src.splitting.splitter import get_train_val_test_splits
 from src.evaluation.metrics import evaluate_predictions
 from src.utils.logging_utils import get_logger
+from src.Optimizer_Model.optimized_model import OptimizedModel
 
 logger = get_logger(__name__)
 
@@ -16,7 +17,9 @@ def compare_all_models():
         "extra_trees",
         "random_forest",
         "hist_gradient_boosting",
-        "xgboost"
+        "xgboost",
+        "ik_dls",
+        "ik_lm"
     ]
     
     logger.info("Starting model comparison...")

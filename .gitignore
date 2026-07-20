@@ -1,53 +1,73 @@
-# Byte-compiled / optimized / DLL files
+# ============================================================
+#  ML_Manipulator - .gitignore
+# ============================================================
+
+# -------------------- Python --------------------
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
 
-# Virtual Environments
+# -------------------- Virtual Environments --------------------
 .env
 .venv
 env/
 venv/
 ENV/
-env.bak/
-venv.bak/
 
-# IDEs and Editors
+# -------------------- IDEs & Editors --------------------
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
-# OS specific files
+# -------------------- OS Files --------------------
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Project-specific confidential / heavy data
-# DO NOT push raw datasets or processed data to GitHub
-data/raw/
-data/processed/
-data/generated/
+# -------------------- Data (Heavy / Generated) --------------------
+# Raw and processed datasets (can be regenerated via generate_dataset.py)
+data/
 *.csv
 *.parquet
 *.h5
+*.hdf5
 
-# Model artifacts (Heavy files)
+# -------------------- Model Artifacts --------------------
+# Trained models and scalers (can be retrained)
 models/*.pkl
 models/*.joblib
 models/*.pt
 models/*.h5
+models/*.onnx
 
-# Outputs, Logs, and Reports
+# -------------------- Outputs & Reports --------------------
 outputs/
 logs/
 *.log
 Plot_Documents/
 plots/
 
-# pytest cache
+# -------------------- Testing --------------------
 .pytest_cache/
+htmlcov/
+.coverage
+*.cover
+
+# -------------------- Node / Frontend --------------------
+webapp/node_modules/
+webapp/dist/
+webapp/.vite/
+
+# -------------------- Misc --------------------
+*.bak
+*.tmp
+*.temp

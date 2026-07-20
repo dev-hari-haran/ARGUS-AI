@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 from src.utils.config_loader import load_config
 from src.utils.logging_utils import get_logger
 from src.utils.paths import RAW_DATA_PATH, ensure_directories
@@ -25,31 +26,52 @@ def generate_dataset():
     np.random.seed(seed)
     logger.info(f"Generating {num_samples} samples with branch policy: {branch_policy}")
     
-    # Pre-allocate arrays
-    q1 = np.random.uniform(q1_limits[0], q1_limits[1], num_samples)
-    q2 = np.random.uniform(q2_limits[0], q2_limits[1], num_samples)
-    l1 = np.random.uniform(l1_limits[0], l1_limits[1], num_samples)
-    l2 = np.random.uniform(l2_limits[0], l2_limits[1], num_samples)
+    CHUNK_SIZE = 1_000_000  # 1 Million rows per chunk to save RAM
+    num_chunks = int(np.ceil(num_samples / CHUNK_SIZE))
     
-    if branch_policy == "positive_q2":
-        q2 = np.abs(q2)
-    elif branch_policy == "negative_q2":
-        q2 = -np.abs(q2)
-        
     fk = ForwardKinematics()
-    x, y = fk.compute(q1, q2, l1, l2)
     
-    df = pd.DataFrame({
-        'x': x,
-        'y': y,
-        'l1': l1,
-        'l2': l2,
-        'q1': q1,
-        'q2': q2
-    })
+    # Overwrite the file on the first chunk, append on subsequent chunks
+    mode = 'w'
+    header = True
     
-    df.to_csv(RAW_DATA_PATH, index=False)
-    logger.info(f"Dataset saved to {RAW_DATA_PATH}")
+    with tqdm(total=num_samples, desc="Generating Dataset") as pbar:
+        for i in range(num_chunks):
+            # Calculate actual size of this chunk (in case of remainder)
+            current_chunk_size = min(CHUNK_SIZE, num_samples - (i * CHUNK_SIZE))
+            
+            # Generate random arrays
+            q1 = np.random.uniform(q1_limits[0], q1_limits[1], current_chunk_size)
+            q2 = np.random.uniform(q2_limits[0], q2_limits[1], current_chunk_size)
+            l1 = np.random.uniform(l1_limits[0], l1_limits[1], current_chunk_size)
+            l2 = np.random.uniform(l2_limits[0], l2_limits[1], current_chunk_size)
+            
+            if branch_policy == "positive_q2":
+                q2 = np.abs(q2)
+            elif branch_policy == "negative_q2":
+                q2 = -np.abs(q2)
+                
+            x, y = fk.compute(q1, q2, l1, l2)
+            
+            df = pd.DataFrame({
+                'x': x,
+                'y': y,
+                'l1': l1,
+                'l2': l2,
+                'q1': q1,
+                'q2': q2
+            })
+            
+            # Append to CSV
+            df.to_csv(RAW_DATA_PATH, mode=mode, header=header, index=False)
+            
+            # Change to append mode for next chunks
+            mode = 'a'
+            header = False
+            
+            pbar.update(current_chunk_size)
+            
+    logger.info(f"Dataset successfully saved to {RAW_DATA_PATH}")
 
 if __name__ == "__main__":
     generate_dataset()

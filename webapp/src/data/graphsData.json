@@ -1,0 +1,289 @@
+[
+  {
+    "id": "xgboost_shap_q1",
+    "filename": "/graphs/xgboost_shap_q1.png",
+    "title": "Xgboost Shap Q1",
+    "category": "Explainability (SHAP)",
+    "description": "This is a detailed explainability (shap) visualization focusing on xgboost shap q1. By decomposing predictions, we can clearly see which physical features drive the model's decision-making."
+  },
+  {
+    "id": "xgboost_shap_q2",
+    "filename": "/graphs/xgboost_shap_q2.png",
+    "title": "Xgboost Shap Q2",
+    "category": "Explainability (SHAP)",
+    "description": "This is a detailed explainability (shap) visualization focusing on xgboost shap q2. By decomposing predictions, we can clearly see which physical features drive the model's decision-making."
+  },
+  {
+    "id": "box_plot_all",
+    "filename": "/graphs/box_plot_all.png",
+    "title": "Box Plot All",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on box plot all. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "clustered_heatmap",
+    "filename": "/graphs/clustered_heatmap.png",
+    "title": "Clustered Heatmap",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on clustered heatmap. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "correlation_heatmap",
+    "filename": "/graphs/correlation_heatmap.png",
+    "title": "Correlation Heatmap",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on correlation heatmap. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "hist_kde_l1",
+    "filename": "/graphs/hist_kde_l1.png",
+    "title": "Hist Kde L1",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on hist kde l1. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "hist_kde_l2",
+    "filename": "/graphs/hist_kde_l2.png",
+    "title": "Hist Kde L2",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on hist kde l2. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "hist_kde_q1",
+    "filename": "/graphs/hist_kde_q1.png",
+    "title": "Hist Kde Q1",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on hist kde q1. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "hist_kde_q2",
+    "filename": "/graphs/hist_kde_q2.png",
+    "title": "Hist Kde Q2",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on hist kde q2. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "hist_kde_x",
+    "filename": "/graphs/hist_kde_x.png",
+    "title": "Hist Kde X",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on hist kde x. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "hist_kde_y",
+    "filename": "/graphs/hist_kde_y.png",
+    "title": "Hist Kde Y",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on hist kde y. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "missing_values_bar",
+    "filename": "/graphs/missing_values_bar.png",
+    "title": "Missing Values Bar",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on missing values bar. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "pair_plot",
+    "filename": "/graphs/pair_plot.png",
+    "title": "Pair Plot",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on pair plot. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "pca_scatter",
+    "filename": "/graphs/pca_scatter.png",
+    "title": "Pca Scatter",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on pca scatter. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "tsne_plot",
+    "filename": "/graphs/tsne_plot.png",
+    "title": "Tsne Plot",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on tsne plot. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "violin_plot_all",
+    "filename": "/graphs/violin_plot_all.png",
+    "title": "Violin Plot All",
+    "category": "Data Understanding",
+    "description": "This is a detailed data understanding visualization focusing on violin plot all. It provides insight into the underlying distribution and patterns present in the kinematic dataset."
+  },
+  {
+    "id": "decision_tree_actual_vs_pred_q1",
+    "filename": "/graphs/decision_tree_actual_vs_pred_q1.png",
+    "title": "Decision Tree Actual Vs Pred Q1",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on decision tree actual vs pred q1. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "decision_tree_residual_hist",
+    "filename": "/graphs/decision_tree_residual_hist.png",
+    "title": "Decision Tree Residual Hist",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on decision tree residual hist. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "hist_gradient_boosting_actual_vs_pred_q1",
+    "filename": "/graphs/hist_gradient_boosting_actual_vs_pred_q1.png",
+    "title": "Hist Gradient Boosting Actual Vs Pred Q1",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on hist gradient boosting actual vs pred q1. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "hist_gradient_boosting_residual_hist",
+    "filename": "/graphs/hist_gradient_boosting_residual_hist.png",
+    "title": "Hist Gradient Boosting Residual Hist",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on hist gradient boosting residual hist. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "inference_time_bar",
+    "filename": "/graphs/inference_time_bar.png",
+    "title": "Inference Time Bar",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on inference time bar. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "model_size_bar",
+    "filename": "/graphs/model_size_bar.png",
+    "title": "Model Size Bar",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on model size bar. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "xgboost_actual_vs_pred_q1",
+    "filename": "/graphs/xgboost_actual_vs_pred_q1.png",
+    "title": "Xgboost Actual Vs Pred Q1",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on xgboost actual vs pred q1. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "xgboost_residual_hist",
+    "filename": "/graphs/xgboost_residual_hist.png",
+    "title": "Xgboost Residual Hist",
+    "category": "Model Diagnostics",
+    "description": "This is a detailed model diagnostics visualization focusing on xgboost residual hist. It highlights the regression performance and error residuals to identify potential biases or variance."
+  },
+  {
+    "id": "joint_space_scatter",
+    "filename": "/graphs/joint_space_scatter.png",
+    "title": "Joint Space Scatter",
+    "category": "Robotics & Kinematics",
+    "description": "This is a detailed robotics & kinematics visualization focusing on joint space scatter. This helps confirm that the physical joint space and Cartesian workspace constraints are being respected."
+  },
+  {
+    "id": "workspace_heatmap",
+    "filename": "/graphs/workspace_heatmap.png",
+    "title": "Workspace Heatmap",
+    "category": "Robotics & Kinematics",
+    "description": "This is a detailed robotics & kinematics visualization focusing on workspace heatmap. This helps confirm that the physical joint space and Cartesian workspace constraints are being respected."
+  },
+  {
+    "id": "workspace_reachability",
+    "filename": "/graphs/workspace_reachability.png",
+    "title": "Workspace Reachability",
+    "category": "Robotics & Kinematics",
+    "description": "This is a detailed robotics & kinematics visualization focusing on workspace reachability. This helps confirm that the physical joint space and Cartesian workspace constraints are being respected."
+  },
+  {
+    "id": "bias_variance_tradeoff",
+    "filename": "/graphs/bias_variance_tradeoff.png",
+    "title": "Bias Variance Tradeoff",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on bias variance tradeoff. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "Comparison_Graph",
+    "filename": "/graphs/Comparison_Graph.png",
+    "title": "Comparison Graph",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on comparison graph. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "decision_tree_error_dist",
+    "filename": "/graphs/decision_tree_error_dist.png",
+    "title": "Decision Tree Error Dist",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on decision tree error dist. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "decision_tree_joint_preds",
+    "filename": "/graphs/decision_tree_joint_preds.png",
+    "title": "Decision Tree Joint Preds",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on decision tree joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "extra_trees_error_dist",
+    "filename": "/graphs/extra_trees_error_dist.png",
+    "title": "Extra Trees Error Dist",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on extra trees error dist. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "extra_trees_joint_preds",
+    "filename": "/graphs/extra_trees_joint_preds.png",
+    "title": "Extra Trees Joint Preds",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on extra trees joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "Graph_Optimized",
+    "filename": "/graphs/Graph_Optimized.png",
+    "title": "Graph Optimized",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on graph optimized. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "hist_gradient_boosting_error_dist",
+    "filename": "/graphs/hist_gradient_boosting_error_dist.png",
+    "title": "Hist Gradient Boosting Error Dist",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on hist gradient boosting error dist. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "hist_gradient_boosting_joint_preds",
+    "filename": "/graphs/hist_gradient_boosting_joint_preds.png",
+    "title": "Hist Gradient Boosting Joint Preds",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on hist gradient boosting joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "model_comparison_errors",
+    "filename": "/graphs/model_comparison_errors.png",
+    "title": "Model Comparison Errors",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on model comparison errors. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "random_forest_error_dist",
+    "filename": "/graphs/random_forest_error_dist.png",
+    "title": "Random Forest Error Dist",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on random forest error dist. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "random_forest_joint_preds",
+    "filename": "/graphs/random_forest_joint_preds.png",
+    "title": "Random Forest Joint Preds",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on random forest joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "xgboost_error_dist",
+    "filename": "/graphs/xgboost_error_dist.png",
+    "title": "Xgboost Error Dist",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on xgboost error dist. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  },
+  {
+    "id": "xgboost_joint_preds",
+    "filename": "/graphs/xgboost_joint_preds.png",
+    "title": "Xgboost Joint Preds",
+    "category": "Performance Reports",
+    "description": "This is a detailed performance reports visualization focusing on xgboost joint preds. These reports aggregate the overall findings to give a high-level summary of model superiority."
+  }
+]
